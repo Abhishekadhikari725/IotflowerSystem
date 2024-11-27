@@ -1,0 +1,6 @@
+1.  Solve for the scheduling logic to make it happen scheduling part as user have scheduled time in database as well as embedded system.(done)
+2.  Solve for the logic to make it happen for manual part when the endpoint is called it will make on in database and when interval is finished it will make it off in database after the interval timeout.(done)
+3.  Solve for the logic of selecting interval in new approach in frontend .(done)
+4.  Solve to implement new frontend approach in backend .(yet to do)
+5.  Make update required in database table for now.(done for now)
+6.  Push all the code to github and cloud .
