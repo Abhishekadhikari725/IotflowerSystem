@@ -1,4 +1,5 @@
 const Log = require('../models/Log');
+const Device= require('../models/Device');
 
 class EmbeddedController {
   // Endpoint for embedded system to fetch pump status
