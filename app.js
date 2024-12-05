@@ -5,6 +5,7 @@ const FrontendController = require('./controllers/frontendcontroller');
 const EmbeddedController = require('./controllers/embeddedcontroller');
 
 const app = express();
+
 app.use(bodyParser.json());
 
 // Test database connection
@@ -26,6 +27,11 @@ app.post('/set-pump-status', FrontendController.setPumpStatus);
 app.get('/should-activate-pump', EmbeddedController.shouldActivatePump);
 app.post('/sensor-data', EmbeddedController.receiveSensorData);
 
+// Endpoints - test query params
+app.get('/test', (req, res) => {
+    console.log(req.query);
+    res.send('received queryparams!');
+});
 sequelize.sync({ force: false })
   .then(() => {
     console.log('Database tables have been synched.');
