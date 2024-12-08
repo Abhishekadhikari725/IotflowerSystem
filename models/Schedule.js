@@ -17,28 +17,32 @@ const Schedule = sequelize.define('Schedule', {
       key: 'device_id',      
     },
   },
-  start_time: {
-    type: DataTypes.DATE,
+  start_date: {
+    type: DataTypes.DATEONLY, 
     allowNull: false,
   },
-  description: {
-    type: DataTypes.TEXT,
-    allowNull: true,
+  end_date: {
+    type: DataTypes.DATEONLY, 
+    allowNull: false,
+  },
+  time: {
+    type: DataTypes.TIME, 
+    allowNull: false,
   },
   interval: {  
-    type: DataTypes.INTEGER,
-    allowNull: true, 
+    type: DataTypes.INTEGER, 
+    allowNull: false, 
   },
   completed: {  
     type: DataTypes.BOOLEAN,
-    defaultValue: false,
+    defaultValue: false, 
   },
 }, {
   timestamps: true,  
 });
 
 // Associations
-Schedule.belongsTo(Device, { foreignKey: 'device_id' }); // Each schedule belongs to a device
-Device.hasMany(Schedule, { foreignKey: 'device_id' });   // A device can have many schedules
+Schedule.belongsTo(Device, { foreignKey: 'device_id' }); 
+Device.hasMany(Schedule, { foreignKey: 'device_id' });  
 
 module.exports = Schedule;
