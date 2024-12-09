@@ -22,16 +22,14 @@ app.get('/devices', FrontendController.getDevices);
 app.post('/schedule', FrontendController.createSchedule);
 app.get('/pump-status', FrontendController.getPumpStatus);
 app.post('/set-pump-status', FrontendController.setPumpStatus);
+app.get('/dashboard-data', FrontendController.getDashboardData);
+
 
 // Embedded Routes
 app.get('/should-activate-pump', EmbeddedController.shouldActivatePump);
 app.post('/sensor-data', EmbeddedController.receiveSensorData);
 
-// Endpoints - test query params
-app.get('/test', (req, res) => {
-    console.log(req.query);
-    res.send('received queryparams!');
-});
+
 sequelize.sync({ force: false })
   .then(() => {
     console.log('Database tables have been synched.');
