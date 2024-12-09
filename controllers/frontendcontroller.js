@@ -2,6 +2,8 @@ const DeviceService = require('../services/DeviceService');
 const LogService = require('../services/LogService');
 const ScheduleService = require('../services/ScheduleService');
 const PumpService = require('../services/PumpService');
+const DashboardService= require('../services/DashboardService')
+
 
 class FrontendController {
   // Fetch all devices
@@ -62,6 +64,16 @@ class FrontendController {
     } catch (error) {
       console.error('Error updating pump status:', error);
       res.status(500).json({ error: 'Failed to update pump status.' });
+    }
+  }
+
+  static async getDashboardData(req, res) {
+    try {
+      const data = await DashboardService.fetchSensorData();
+      res.status(200).json({ data });
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+      res.status(500).json({ error: 'Failed to fetch dashboard data' });
     }
   }
 }
