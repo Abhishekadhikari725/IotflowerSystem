@@ -4,6 +4,8 @@ const sequelize = require('./db');
 const FrontendController = require('./controllers/frontendcontroller');
 const EmbeddedController = require('./controllers/embeddedcontroller');
 
+const scheduler = require('./schedulers/Scheduler');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -28,6 +30,11 @@ app.get('/dashboard-data', FrontendController.getDashboardData);
 // Embedded Routes
 app.get('/should-activate-pump', EmbeddedController.shouldActivatePump);
 app.post('/sensor-data', EmbeddedController.receiveSensorData);
+
+
+// Start the scheduler
+setInterval(scheduler.checkSchedules, 60 * 1000);  // Check schedules every minute
+scheduler.resetDailyCompletion();  // Start the reset process for daily completion at midnight
 
 
 sequelize.sync({ force: false })

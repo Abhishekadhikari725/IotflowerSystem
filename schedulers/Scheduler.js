@@ -40,8 +40,7 @@ const resetDailyCompletion = () => {
   }, msUntilReset);
 };
 
-// Run the scheduler every minute
-setInterval(checkSchedules, 60 * 1000);
-
-// Start the reset process
-resetDailyCompletion();
+module.exports = {
+  checkSchedules,
+  resetDailyCompletion
+};
