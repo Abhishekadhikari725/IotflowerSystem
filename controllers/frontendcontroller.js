@@ -3,6 +3,8 @@ const LogService = require('../services/LogService');
 const ScheduleService = require('../services/ScheduleService');
 const PumpService = require('../services/PumpService');
 const DashboardService= require('../services/DashboardService')
+const LogFetchService=require('../services/LogFetchService')
+const ScheduleFetchService=require('../services/ScheduleFetchService')
 
 
 class FrontendController {
@@ -76,6 +78,40 @@ class FrontendController {
       res.status(500).json({ error: 'Failed to fetch dashboard data' });
     }
   }
+
+  static async getLogs(req, res) {
+    const { device_id } = req.query;
+
+    if (!device_id) {
+      return res.status(400).json({ error: 'device_id is required' });
+    }
+
+    try {
+      const logs = await LogFetchService.getLogsByDeviceId(device_id);
+      res.status(200).json({ success: true, logs });
+    } catch (error) {
+      console.error('Error fetching logs:', error);
+      res.status(500).json({ error: 'Failed to fetch logs' });
+    }
+  }
+
+  // Fetch schedules by device_id
+  static async getSchedules(req, res) {
+    const { device_id } = req.query;
+
+    if (!device_id) {
+      return res.status(400).json({ error: 'device_id is required' });
+    }
+
+    try {
+      const schedules = await ScheduleFetchService.getSchedulesByDeviceId(device_id);
+      res.status(200).json({ success: true, schedules });
+    } catch (error) {
+      console.error('Error fetching schedules:', error);
+      res.status(500).json({ error: 'Failed to fetch schedules' });
+    }
+  }
+
 }
 
 module.exports = FrontendController;

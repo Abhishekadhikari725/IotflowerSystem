@@ -2,7 +2,6 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../db');
 const Device = require('./Device'); 
 
-// Define the Schedule model
 const Schedule = sequelize.define('Schedule', {
   schedule_id: {
     type: DataTypes.INTEGER,
