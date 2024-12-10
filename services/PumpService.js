@@ -3,7 +3,7 @@ const LogService = require('./LogService');
 
 class PumpService {
   static async startPump(device_id, interval) {
-    await DeviceService.updateStatus(device_id, 'active');
+    await DeviceService.updateStatus(device_id, 'active',interval);
     await LogService.createLog(device_id, 'Pump turned ON', `Pump activated for ${interval} seconds`);
   }
 

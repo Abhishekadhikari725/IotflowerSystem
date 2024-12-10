@@ -13,7 +13,7 @@ class ScheduleService {
     return await Schedule.findAll({
       where: {
         start_date: date,
-        start_time: { [Op.lte]: time },
+        time: { [Op.lte]: time },
         completed: false,
       },
       include: [{ model: require('../models/Device'), where: { status: 'inactive' } }],

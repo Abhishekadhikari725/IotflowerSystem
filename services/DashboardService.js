@@ -16,9 +16,10 @@ class DashboardService {
   static async fetchSensorData() {
     const query = `
       from(bucket: "${INFLUX.BUCKET}")
-      |> range(start: -5m)
+      |> range(start: -1h)
       |> filter(fn: (r) => r._measurement == "environment_data")
       |> keep(columns: ["_time", "_field", "_value", "device_id"])
+      |> aggregateWindow(every: 5m, fn: mean, createEmpty: true)
     `;
 
     try {
