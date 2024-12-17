@@ -2,6 +2,13 @@
 
 This repository contains the backend for a smart irrigation system that handles device management, sensor data collection, scheduling, and pump control. The backend is built with Node.js and Express, and uses MySQL for relational data and InfluxDB for time-series data.
 
+# Demo Videos of IoT Flower
+
+- Watering the flower:
+
+  [![Watch the video](https://img.youtube.com/vi/KV8GZOnwDzo/0.jpg)](https://www.youtube.com/watch?v=KV8GZOnwDzo)
+
+
 ## Table of Contents
 
 - [Project Setup](#project-setup)
